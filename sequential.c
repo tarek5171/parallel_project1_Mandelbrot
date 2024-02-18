@@ -94,7 +94,7 @@ int main(int argc, char* argv[]) {
 
             for (int nx = 0; nx < task_size; nx++) {
                 for (int ny = 0; ny < HEIGHT; ny++) {
-                    mandelbrot[start_row + nx][ny] = recived[nx][ny];
+                    mandelbrot[nx + nx * task_size][ny] = recived[nx][ny];
                 }
             }
         }
@@ -104,8 +104,7 @@ int main(int argc, char* argv[]) {
 
         printf("Execution time: %f seconds\n", execution_time);
 
-        // Save image
-        save_ppm("mandelbrot3.ppm", WIDTH, HEIGHT, &mandelbrot[0][0]);
+        save_ppm("mandelbrot.ppm", WIDTH, HEIGHT, &mandelbrot[0][0]);
     } else { // Slave processes
         int start_row, end_row;
         MPI_Recv(&start_row, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
@@ -134,3 +133,4 @@ int main(int argc, char* argv[]) {
     MPI_Finalize();
     return 0;
 }
+
