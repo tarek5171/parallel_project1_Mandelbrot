@@ -6,7 +6,7 @@
 #define HEIGHT 1000
 #define task_size 2
 
-// Function to save the 2D array as a PPM image file
+// Function to save the 2D array as a PPM image file.
 void save_ppm(const char* filename, int width, int height, int* data) {
     FILE* fp;
     fp = fopen(filename, "wb");
